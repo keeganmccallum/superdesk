@@ -27,9 +27,9 @@ superdesk:
    - mongodb
    - elastic
   environment:
-   - SUPERDESK_URL=http://localhost:8080/api
-   - SUPERDESK_WS_URL=ws://localhost:8080/ws
-   - SUPERDESK_CLIENT_URL=http://localhost:8080
+   - SUPERDESK_URL=http://ec2-18-220-2-159.us-east-2.compute.amazonaws.com:8080/api
+   - SUPERDESK_WS_URL=ws://ec2-18-220-2-159.us-east-2.compute.amazonaws.com:8080/ws
+   - SUPERDESK_CLIENT_URL=http://ec2-18-220-2-159.us-east-2.compute.amazonaws.com:8080
   ports:
    - "8080:80"
   volumes:

@@ -3,21 +3,17 @@ mongodb:
     file: common.yml
     service: mongodb
   ports:
-   - "27017:27017"
+    - "27017:27017"
 
 redis:
   extends:
     file: common.yml
     service: redis
-  ports:
-   - "6379:6379"
 
 elastic:
   extends:
     file: common.yml
     service: elastic
-  ports:
-    - "9200:9200"
 
 postfix:
   extends:
@@ -25,6 +21,7 @@ postfix:
     service: postfix
 
 superdesk:
+  net: "host"
   extends:
     file: common.yml
     service: superdesk

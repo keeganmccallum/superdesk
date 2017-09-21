@@ -21,13 +21,6 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-# setup the environment
-WORKDIR /opt/superdesk/
-COPY ./docker/nginx.conf /etc/nginx/nginx.conf
-COPY ./docker/superdesk_vhost.conf /etc/nginx/sites-enabled/superdesk.conf
-COPY ./docker/start.sh /opt/superdesk/start.sh
-CMD /opt/superdesk/start.sh
-
 # client ports
 EXPOSE 9000
 EXPOSE 80
@@ -43,8 +36,15 @@ ENV C_FORCE_ROOT "False"
 ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
 
 # install server
+WORKDIR /opt/superdesk/
 COPY ./server /opt/superdesk
 RUN pip3 install -U -r requirements.txt
+
+# setup the environment
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+COPY ./docker/superdesk_vhost.conf /etc/nginx/sites-enabled/superdesk.conf
+COPY ./docker/start.sh /opt/superdesk/start.sh
+CMD /opt/superdesk/start.sh
 
 # install client
 COPY ./client /opt/superdesk/client/
